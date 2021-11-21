@@ -61,14 +61,14 @@ padding:0 20px;
 
 export const ForgotPasswordText = styled.Text`
 color:#ae1b73;
-margim-top:14px;
+margin-top:14px;
 font-size:14px;
 text-align:right;
 
 `;
 export const ContainerSubmit = styled.View`
 flex-direction:row;
-margim-top:25px;
+margin-top:25px;
 `;
 
 export const ButtonSubmit = styled.TouchableOpacity`

@@ -1,5 +1,5 @@
-import React,{useContext,useState,useEffect} from 'react';
-
+import React,{useContext,useState,useEffect,useRef} from 'react';
+import { UsuarioContext } from '../../contexts/user';
 
 import firebaseApp from '../../services/firebase';
 
@@ -10,6 +10,7 @@ onSnapshot,
 query,
 where
 } from 'firebase/firestore'
+
 
 import {
     Container,
@@ -22,6 +23,7 @@ import {
 const Chat = () =>{
 
     const [messages,setMessages] = useState([])
+    const {user} = useContext(UsuarioContext)
 
     useEffect(()=>{
         const unsub=onSnapshot(query(collection(db,"mensagens"),where("lido","!=",true)),
@@ -64,9 +66,14 @@ const Chat = () =>{
             {messages.map((item)=>(
                 <Message key={item.id}>{item.id}</Message>
             ))}
+
+  
         </Container>
     )
 }
 
+  
+  
+  
 
 export default Chat;
