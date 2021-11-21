@@ -12,7 +12,7 @@ const AppRoutes = ()=>{
      <Tab.Navigator
      tabBarOptions={
          {
-            activeTintColor: 'tomato',
+            activeTintColor: '#AE1B73',
             inactiveTintColor: '#ccc'
          }
      }

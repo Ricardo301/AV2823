@@ -1,22 +1,28 @@
 import React,{useContext} from 'react';
-import {View,Text,TouchableOpacity} from 'react-native'
+
 import { UsuarioContext } from '../../contexts/user';
 
+import {
+    Container,
+    Button,
+    ButtonText
+} from './styles'
 
 
 const Settings = () =>{
 
    
 
-    const {signOut} = useContext(UsuarioContext)
+    const {signOut,user} = useContext(UsuarioContext)
 
     return (
-        <View>
-            <TouchableOpacity onPress={()=>{signOut()}}>
-            <Text>Settings</Text>
-            </TouchableOpacity>
+        <Container>
+            <ButtonText>{user.email}</ButtonText>
+            <Button onPress={()=>{signOut()}}>
+            <ButtonText>Sair do App</ButtonText>
+            </Button>
            
-        </View>
+        </Container>
     )
 }
 
