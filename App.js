@@ -1,14 +1,19 @@
 import React from 'react';
 
-//import Login from './pages/Login'
-//import Chat from './pages/Chat'
-//import Settings from './pages/Settings'
 
 import Routes from './routes';
 
+import {LogBox}from 'react-native'
+
+import { UsuarioProvider } from './contexts/user';
 export default function App() {
+
+  LogBox.ignoreLogs(['Setting a timer'])
   return (
-   <Routes/>
+    <UsuarioProvider>
+      <Routes/>
+    </UsuarioProvider>
+   
   );
 }
 
