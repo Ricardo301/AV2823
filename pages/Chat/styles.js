@@ -36,3 +36,13 @@ font-size:12px;
 
 
 `;
+
+
+export const GiftedChat = styled.Text`
+height:60px;
+background-color:#AE1B73;
+border-radius:5px;
+justify-content:center;
+align-items:center;
+width:100%;
+`

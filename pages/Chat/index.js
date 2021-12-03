@@ -1,7 +1,8 @@
-import React,{useContext,useState,useEffect,useRef} from 'react';
+import React,{useContext,useState,useEffect,useRef,useCallback} from 'react';
 import { UsuarioContext } from '../../contexts/user';
-
+import { GiftedChat,InputToolbar  } from 'react-native-gifted-chat'
 import firebaseApp from '../../services/firebase';
+import { StyleSheet } from 'react-native'
 
 import {getFirestore,
 addDoc,
@@ -50,25 +51,45 @@ const Chat = () =>{
         try{
             await addDoc(collection(db,'mensagens'),{
                 lido:false,
-                mensagem:'olá'
+                mensagem:'messages'
             })
         }catch(err){
             console.log('err')
         }
     }
 
-    return (
-        <Container>
-            <Button onPress={()=>{handbleMenssage()}}>
-            <ButtonText>Enviar Mensagem</ButtonText>
-            
-            </Button>
-            {messages.map((item)=>(
-                <Message key={item.id}>{item.id}</Message>
-            ))}
+    const onSend = useCallback((messages = []) => {
+        setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
+      }, [])
 
+     
+      function renderInputToolbar (props) {
+        return (
+          <InputToolbar {...props} containerStyle={styles.toolbar} />
+        )
+      }
+
+    return (
+        
+        <Container >
+            <GiftedChat 
+             renderInputToolbar={renderInputToolbar}
+      messages={messages}
+      onSend={messages => onSend(messages)}
+      user={{
+        _id: user.id,
+        
+      }}
+    />
+    
+           
+    
+
+                    
   
         </Container>
+        
+        
     )
 }
 
@@ -77,3 +98,16 @@ const Chat = () =>{
   
 
 export default Chat;
+
+const styles = StyleSheet.create({
+    toolbar: {
+        borderRadius:30,
+       flex:1,
+        width:400,
+        height:120,
+        
+        
+        
+
+    }
+  })
